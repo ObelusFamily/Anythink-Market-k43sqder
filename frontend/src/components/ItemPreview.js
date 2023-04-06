@@ -1,10 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import agent from "../agent";
 import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
-
+import placeholder from "../imgs/placeholder.png"
 const mapDispatchToProps = (dispatch) => ({
+  
   favorite: (slug) =>
     dispatch({
       type: ITEM_FAVORITED,
@@ -19,6 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const ItemPreview = (props) => {
   const item = props.item;
+  const [imgSrc, setImgSrc]=useState(item.image)
 
   const handleClick = (ev) => {
     ev.preventDefault();
@@ -28,6 +31,9 @@ const ItemPreview = (props) => {
       props.favorite(item.slug);
     }
   };
+  
+  const haneleImgError=()=>setImgSrc(placeholder)
+  
 
   return (
     <div
@@ -37,7 +43,8 @@ const ItemPreview = (props) => {
     >
       <img
         alt="item"
-        src={item.image}
+        onError={haneleImgError}
+        src={imgSrc}
         className="card-img-top item-img"
         style={{ borderRadius: "20px" }}
       />
