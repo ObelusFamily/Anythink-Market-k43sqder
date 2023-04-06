@@ -21,6 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
 const ItemPreview = (props) => {
   const item = props.item;
   const [imag, setImag]=useState(item.image)
+
   const handleClick = (ev) => {
     ev.preventDefault();
     if (item.favorited) {
@@ -42,6 +43,7 @@ const ItemPreview = (props) => {
       <img
         alt="item"
         src={imag}
+        
         className="card-img-top item-img"
         style={{ borderRadius: "20px" }}
         onError={handleImgErr}
