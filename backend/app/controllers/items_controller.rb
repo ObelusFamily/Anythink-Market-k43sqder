@@ -1,3 +1,4 @@
+require "openai"
 # frozen_string_literal: true
 require_relative "../../lib/event"
 include Event
@@ -6,6 +7,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
+    puts ENV['SUPERUSER']
     @items = Item.includes(:tags)
 
     @items = @items.tagged_with(params[:tag]) if params[:tag].present?
@@ -53,6 +55,22 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.user = current_user
+
+
+    if @item.image.blank?
+     
+      openAIClient = OpenAI::Client.new
+      # openAIClient = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
+      response = openAIClient.images.generate(
+        parameters: {
+          prompt: @item.title,
+          size: "256x256"
+        }
+      )
+     
+      @item.image = response.dig("data", 0, "url")
+    end
+
 
     if @item.save
       sendEvent("item_created", { item: item_params })
