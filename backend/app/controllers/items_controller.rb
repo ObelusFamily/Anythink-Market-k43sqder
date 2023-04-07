@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
           title: item.title,
           slug: item.slug,
           description: item.description,
-          image: item.image,
+          image: item.image.blank? ? ActionController::Base.helpers.image_url('placeholder.png') : item.image,
           tagList: item.tags.map(&:name),
           createdAt: item.created_at,
           updatedAt: item.updated_at,
@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
           },
           favorited: signed_in? ? current_user.favorited?(item) : false,
           favoritesCount: item.favorites_count || 0
+
         }
       },
       items_count: @items_count
