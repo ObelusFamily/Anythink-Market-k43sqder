@@ -1,10 +1,10 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import agent from "../agent";
 import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
-import placeholder from "../imgs/placeholder.png"
+import placeholderImage from "../imgs/placeholder.png"
 const mapDispatchToProps = (dispatch) => ({
   favorite: (slug) =>
     dispatch({
@@ -20,7 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 const ItemPreview = (props) => {
   const item = props.item;
-  const [imag, setImag]=useState(item.image)
+  // const [imag, setImag]=useState(item.image)
+  console.log(item.title)
+console.log(item.image)
 
   const handleClick = (ev) => {
     ev.preventDefault();
@@ -30,9 +32,9 @@ const ItemPreview = (props) => {
       props.favorite(item.slug);
     }
   };
-  const handleImgErr=()=>{
-    setImag(placeholder)
-  }
+  // const handleImgErr=()=>{
+  //   setImag(placeholder)
+  // }
 
   return (
     <div
@@ -42,15 +44,16 @@ const ItemPreview = (props) => {
     >
       <img
         alt="item"
-        src={imag}
+        // src={item.image}
+        src={item.image || placeholderImage}
         
         className="card-img-top item-img"
         style={{ borderRadius: "20px" }}
-        onError={handleImgErr}
+        // onError={handleImgErr}
       />
       <div className="card-body">
         <Link to={`/item/${item.slug}`} className="text-white">
-          <h3 className="card-title">{item.title}</h3>
+          <h3 className="card-title">{item.title} anf me</h3>
           <p className="card-text crop-text-3">{item.description}</p>
         </Link>
         <div className="d-flex flex-row align-items-center pt-2 item-footer">
