@@ -18,11 +18,15 @@ class ItemsController < ApplicationController
 
     render json: {
       items: @items.map { |item|
+      base= request.base_url
+      temp = item.image.blank? ? base+ActionController::Base.helpers.image_url('placeholder.png') : item.image
         {
           title: item.title,
           slug: item.slug,
           description: item.description,
-          image: item.image,
+          
+          # image: item.image,
+          image: temp,
           tagList: item.tags.map(&:name),
           createdAt: item.created_at,
           updatedAt: item.updated_at,
