@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# json.call(item, :title, :slug, :description, :image)
-json.call(item, :title, :slug, :description)
-json.image item.image.blank? ? image_url('placeholder.png') : item.image
+json.call(item, :title, :slug, :description, :image)
 json.createdAt item.created_at
 json.updatedAt item.updated_at
 json.tagList item.tag_list
