@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
           title: item.title,
           slug: item.slug,
           description: item.description,
-          image: item.image.blank? ? 'https://villysiu-ideal-halibut-77977xgpj4xhx665-3000.preview.app.github.dev/assets/placeholder-e1aeba5ad14f1812b6dc440137a7decf450c76bba266327372f057ef3c8235e0.png' : item.image,
+          image: item.image,
           tagList: item.tags.map(&:name),
           createdAt: item.created_at,
           updatedAt: item.updated_at,
