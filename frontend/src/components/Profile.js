@@ -62,17 +62,22 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFollow: (username) =>
+  onFollow: (username) =>{
+  console.log("in FOLLOW")
     dispatch({
       type: FOLLOW_USER,
       payload: agent.Profile.follow(username),
-    }),
+    })
+  },
   onLoad: (payload) => dispatch({ type: PROFILE_PAGE_LOADED, payload }),
-  onUnfollow: (username) =>
+  onUnfollow: (username) =>{
+    console.log("in UNFOLLOW")
+  
     dispatch({
       type: UNFOLLOW_USER,
       payload: agent.Profile.unfollow(username),
-    }),
+    })
+  },
   onUnload: () => dispatch({ type: PROFILE_PAGE_UNLOADED }),
 });
 
@@ -120,7 +125,8 @@ class Profile extends React.Component {
     if (!profile) {
       return null;
     }
-
+    console.log(this.props.currentUser)
+console.log(this.props.profile)
     const isUser =
       this.props.currentUser &&
       this.props.profile.username === this.props.currentUser.username;

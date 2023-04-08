@@ -4,14 +4,16 @@ class FollowsController < ApplicationController
   before_action :authenticate_user!
 
   def create
+    puts "INSIDE FOLLOW USER"
     @user = User.find_by!(username: params[:profile_username])
 
     current_user.follow(@user) if current_user.id != @user.id
-
+    puts current_user.following?(@user)
     render 'profiles/show'
   end
 
   def destroy
+    puts "INSIDE UNFOLLOW USER"
     @user = User.find_by!(username: params[:profile_username])
 
     current_user.stop_following(@user) if current_user.id != @user.id
