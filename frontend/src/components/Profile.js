@@ -62,17 +62,22 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFollow: (username) =>
+  onFollow: (username) =>{
+  console.log("in FOLLOW")
     dispatch({
       type: FOLLOW_USER,
       payload: agent.Profile.follow(username),
-    }),
+    })
+  },
   onLoad: (payload) => dispatch({ type: PROFILE_PAGE_LOADED, payload }),
-  onUnfollow: (username) =>
+  onUnfollow: (username) =>{
+    console.log("in UNFOLLOW")
+  
     dispatch({
       type: UNFOLLOW_USER,
       payload: agent.Profile.unfollow(username),
-    }),
+    })
+  },
   onUnload: () => dispatch({ type: PROFILE_PAGE_UNLOADED }),
 });
 
@@ -120,7 +125,11 @@ class Profile extends React.Component {
     if (!profile) {
       return null;
     }
-
+<<<<<<< HEAD
+=======
+    console.log(this.props.currentUser)
+console.log(this.props.profile)
+>>>>>>> b08a75419f5e24dd60a3b1c9e5fd7bc7837ac133
     const isUser =
       this.props.currentUser &&
       this.props.profile.username === this.props.currentUser.username;
@@ -129,7 +138,8 @@ class Profile extends React.Component {
       <div className="profile-page">
         <div className="container">
           <div className="row p-4 text-center">
-            <div className="user-info col-xs-12 col-md-8 offset-md-2">
+            <div className="user-info " style={{minWidth: "100%"}}>
+     
               <img
                 src={profile.image}
                 className="user-img"
