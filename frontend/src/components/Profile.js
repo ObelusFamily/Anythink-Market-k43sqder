@@ -125,6 +125,11 @@ class Profile extends React.Component {
     if (!profile) {
       return null;
     }
+<<<<<<< HEAD
+=======
+    console.log(this.props.currentUser)
+console.log(this.props.profile)
+>>>>>>> b08a75419f5e24dd60a3b1c9e5fd7bc7837ac133
     const isUser =
       this.props.currentUser &&
       this.props.profile.username === this.props.currentUser.username;
