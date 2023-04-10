@@ -57,7 +57,7 @@ const ItemPreview = (props) => {
                 className="user-pic rounded-circle pr-1"
               />
             </Link>
-            {!item.seller.isVerified && 
+            {item.seller.isVerified && 
               <>
             
 
