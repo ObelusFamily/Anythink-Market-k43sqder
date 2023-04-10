@@ -4,6 +4,7 @@ import agent from "../agent";
 import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
 import verified_seller from "../imgs/verified_seller.svg"
+
 const mapDispatchToProps = (dispatch) => ({
   favorite: (slug) =>
     dispatch({
@@ -47,7 +48,7 @@ const ItemPreview = (props) => {
           <p className="card-text crop-text-3">{item.description}</p>
         </Link>
         <div className="d-flex align-items-center pt-2 item-footer" style={{justifyContent: "space-between"}}>
-          <div >
+          {/* <div > */}
             <Link to={`/@${item.seller.username}`} className="flex-grow-1">
               <img
                 src={item.seller.image}
@@ -55,13 +56,15 @@ const ItemPreview = (props) => {
                 className="user-pic rounded-circle pr-1"
               />
             </Link>
-            {item.seller.isVerified && 
+            {!item.seller.isVerified && 
               <>
-              <img src={verified_seller} />
+            
+              <img src="verified_seller.svg" alt="ANNNN USER" />
+
               TOP SELLER
               </>
             }
-          </div>
+          {/* </div> */}
           <button className="btn btn-outline-secondary" onClick={handleClick}>
             <i className="ion-heart"></i> {item.favoritesCount}
           </button>
