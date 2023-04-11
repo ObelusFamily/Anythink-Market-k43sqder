@@ -48,9 +48,9 @@ const LoggedInView = (props) => {
     </ul>
   );
 };
-
-class Header extends React.Component {
-  render() {
+const Header=()=>{
+// class Header extends React.Component {
+  // render() {
     return (
       <nav
         className="navbar navbar-expand-md navbar-dark"
@@ -67,7 +67,7 @@ class Header extends React.Component {
         )}
       </nav>
     );
-  }
+  // }
 }
 
 export default Header;
