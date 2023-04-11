@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useState} from "react";
 import agent from "../../agent";
 import { connect } from "react-redux";
 import { ADD_COMMENT } from "../../constants/actionTypes";
@@ -8,14 +8,17 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const CommentInput = ({slug, currentUser, onSubmit}) =>{
-  const inputRef = useRef(null);
+  const [body, setBody] = useState("")
+  
+  const handleChange=(e)=>{
+    setBody(e.target.value)
+  }
   const handleSubmit= (e)=>{
     e.preventDefault();
-
-    agent.Comments.create(slug, { body: inputRef.current.value })
+    agent.Comments.create(slug, { body: e.target[0].value })
     .then(payload=>onSubmit(payload))
     
-      inputRef.current.value = "";
+    setBody("")
   }
   
     return (
@@ -25,7 +28,8 @@ const CommentInput = ({slug, currentUser, onSubmit}) =>{
 
             className="form-control"
             placeholder="Write a comment..."
-            ref={inputRef}
+            onChange={handleChange}
+            value={body}
             rows="3"
           ></textarea>
         </div>
