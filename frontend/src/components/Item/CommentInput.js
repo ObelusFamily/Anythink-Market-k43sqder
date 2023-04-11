@@ -15,7 +15,9 @@ const CommentInput = ({slug, currentUser, onSubmit}) =>{
   }
   const handleSubmit= (e)=>{
     e.preventDefault();
-    agent.Comments.create(slug, { body: e.target[0].value })
+    // console.log(e.target[0].value)
+    // console.log(body)
+    agent.Comments.create(slug, { body: body })
     .then(payload=>onSubmit(payload))
     
     setBody("")
