@@ -10,7 +10,6 @@ import {
   APPLY_TAG_FILTER,
 } from "../../constants/actionTypes";
 
-
 const Promise = global.Promise;
 
 const mapStateToProps = (state) => ({
@@ -42,9 +41,8 @@ const Home = ({onLoad, onUnload, tags, onClickTag}) => {
 
     return (
       <div className="home-page">
-       
-          <Banner />
-        
+        <Banner />
+
         <div className="container page">
           <Tags tags={tags} onClickTag={onClickTag} />
           <MainView />
