@@ -8,7 +8,7 @@
 require 'faker'
 User.destroy_all
 
-10.times do |index|
+100.times do |index|
     u=User.create!(
         username: Faker::Name.first_name,
         email: Faker::Internet.email,
