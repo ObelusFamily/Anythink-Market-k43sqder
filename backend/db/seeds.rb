@@ -10,11 +10,11 @@ User.destroy_all
 
 100.times do |index|
     u=User.create!(
-        username: Faker::Name.first_name,
+        username: Faker::Name.unique.first_name,
         email: Faker::Internet.email,
         password: Faker::Internet.password(min_length: 8, max_length: 12)
     )
-    puts u.id 
+    # puts u.id 
     item=Item.create!(
         title: Faker::TvShows::Friends.character,
         description: Faker::TvShows::Friends.quote,
